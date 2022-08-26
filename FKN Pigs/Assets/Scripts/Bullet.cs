@@ -19,13 +19,13 @@ public class Bullet : MonoBehaviour
     {
         if (other.gameObject.tag == "Player" || other.gameObject.tag == "Wall")
         {
-            
-            Destroy(gameObject);
             if (other.gameObject.tag == "Player")
             {
-                //Player hp --
+                other.GetComponent<ManagerVidas>().CambioVidasPigs(-1);
+
                 Debug.Log("Player hit");
             }
+            Destroy(gameObject);     
         }
     }
 
