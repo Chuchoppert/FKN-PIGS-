@@ -7,6 +7,9 @@ TagManager:
   - Walls
   - Bullet
   - Enemy
+  - Key
+  - KeyText
+  - GuardText
   layers:
   - Default
   - TransparentFX

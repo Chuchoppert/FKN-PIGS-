@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Butcher_RecepcionDaño : MonoBehaviour
 {
+    GameManager GameManager;
+
     private void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.tag == "Player")
@@ -11,6 +13,8 @@ public class Butcher_RecepcionDaño : MonoBehaviour
             if (other.GetComponent<ManagerVidas>().puerconios.DashIsActivate)
             {
                 Destroy(this.gameObject);
+                GameManager.GuardScore++;
+                GameManager.GuardCounterText.text = GameManager.GuardScore.ToString();
             }
             else
             {
