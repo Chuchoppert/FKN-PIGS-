@@ -9,32 +9,25 @@ public class ManagerVidas : MonoBehaviour
     public List<VidasPigs> TodosLosPigs;
     public int PigSeleccionado;
 
+    public ManagerRotacion managerRotacion;
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.L))
         {
-            if(PigSeleccionado > 0)
+            if(PigSeleccionado < TodosLosPigs.Count - 1)
             {
                 PigSeleccionado++;
-                //PigSeleccionado = 0;
+                managerRotacion.ChangePosOfPigs(1);
             }
-
-            vidasPigs_Actual = TodosLosPigs[PigSeleccionado];
         }
-
-        if (Input.GetKeyDown(KeyCode.K))
+        else if (Input.GetKeyDown(KeyCode.K))
         {
-            if(PigSeleccionado < TodosLosPigs.Count)
+            if(PigSeleccionado > 0)
             {
                 PigSeleccionado--;
+                managerRotacion.ChangePosOfPigs(-1);
             }
-            //if (PigSeleccionado >= TodosLosPigs.Length)
-            //{
-            //    PigSeleccionado = TodosLosPigs.Length;
-            //}
-
-            vidasPigs_Actual = TodosLosPigs[PigSeleccionado];
         }   
     }
 
@@ -46,7 +39,8 @@ public class ManagerVidas : MonoBehaviour
         {
             TodosLosPigs.Remove(vidasPigs_Actual);
             Destroy(vidasPigs_Actual.gameObject);
-            vidasPigs_Actual = TodosLosPigs[0];          
+            vidasPigs_Actual = TodosLosPigs[0];
+            managerRotacion.ChangePosOfPigs(0);
         }
     }
 

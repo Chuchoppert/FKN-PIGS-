@@ -8,15 +8,15 @@ public class Butcher_RecepcionDaño : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag == "Player")
+        if(other.gameObject.tag == "Dash")
         {
-            if (other.GetComponent<ManagerVidas>().puerconios.DashIsActivate)
-            {
-                Destroy(this.gameObject);
+                Destroy(transform.parent.gameObject);
                 GameManager.GuardScore++;
-                GameManager.GuardCounterText.text = GameManager.GuardScore.ToString();
-            }
-            else
+                GameManager.GuardCounterText.text = GameManager.GuardScore.ToString();   
+        }
+        else if(other.gameObject.tag == "Player")
+        {
+            if (!other.GetComponent<ManagerVidas>().puerconios.DashIsActivate)
             {
                 Debug.Log("CambioVidas");
                 other.GetComponent<ManagerVidas>().CambioVidasPigs(-1);

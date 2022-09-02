@@ -10,6 +10,7 @@ TagManager:
   - Key
   - KeyText
   - GuardText
+  - Dash
   layers:
   - Default
   - TransparentFX
@@ -22,7 +23,7 @@ TagManager:
   - NonCollision
   - Bullet
   - Enemy
-  - 
+  - Dash
   - 
   - 
   - 

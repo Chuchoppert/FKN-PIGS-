@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Puerconios : MonoBehaviour
 {
@@ -17,10 +18,17 @@ public class Puerconios : MonoBehaviour
     public float IntervalDash = 3.0f;
     public float counter = 0.0f;
     public float SpeedDashPig;
-    public bool DashIsActivate; 
+    public bool DashIsActivate;
+    public RawImage DashIcon;
+    public GameObject DashGO;
     // Start is called before the first frame update
     void Start()
     {
+        DashIcon = GameObject.Find("DashIcon_RawImage").GetComponent<RawImage>();
+        DashIcon.color = new Color(DashIcon.color.r, DashIcon.color.g, DashIcon.color.b, 0.2f);
+
+        DashGO.SetActive(false);
+
         rb = GetComponent<Rigidbody>();
     }
 
@@ -39,9 +47,15 @@ public class Puerconios : MonoBehaviour
             //rb.velocity = new Vector3(0.0f, 0.0f, -InputY) * SpeedPig;
             //rb.MovePosition(transform.position + new Vector3(-InputX, 0.0f, -InputY) * SpeedPig * Time.deltaTime);
 
+            if (counter >= IntervalDash)
+            {
+                DashIcon.color = new Color(DashIcon.color.r, DashIcon.color.g, DashIcon.color.b, 1.0f);
+            }
 
             if (Input.GetKeyDown(KeyCode.LeftShift) && counter >= IntervalDash)
             {
+                DashIcon.color = new Color(DashIcon.color.r, DashIcon.color.g, DashIcon.color.b, 0.2f);
+                DashGO.SetActive(true);
                 DashIsActivate = true;
                 Vector3 Dashdirection = new Vector3(0.0f, 0.0f, -1.0f);
                 Dashdirection = transform.TransformDirection(Dashdirection);
@@ -89,5 +103,6 @@ public class Puerconios : MonoBehaviour
     private void DeactivateDash()
     {
         DashIsActivate = false;
+        DashGO.SetActive(false);
     }
 }

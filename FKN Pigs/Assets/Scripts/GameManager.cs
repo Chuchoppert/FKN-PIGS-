@@ -45,6 +45,11 @@ public class GameManager : MonoBehaviour
         {
             SceneManager.LoadScene("GameOver");
         }
+
+        if(KeyScore >= 3)
+        {
+            SceneManager.LoadScene("Win");
+        }
     }
 
 
