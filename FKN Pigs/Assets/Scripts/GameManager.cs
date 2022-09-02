@@ -22,6 +22,9 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        KeyScore = 0;
+        GuardScore = 0;
+
         KeyCounterText = GameObject.FindGameObjectWithTag("KeyText").GetComponent<TextMeshProUGUI>();
         GuardCounterText = GameObject.FindGameObjectWithTag("GuardText").GetComponent<TextMeshProUGUI>();
     }
@@ -39,16 +42,6 @@ public class GameManager : MonoBehaviour
             {
                 Pause();
             }
-        }
-
-        if(Pigs.transform.childCount == 0)
-        {
-            SceneManager.LoadScene("GameOver");
-        }
-
-        if(KeyScore >= 3)
-        {
-            SceneManager.LoadScene("Win");
         }
     }
 

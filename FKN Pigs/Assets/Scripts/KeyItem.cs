@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class KeyItem : MonoBehaviour
 {
@@ -9,9 +10,14 @@ public class KeyItem : MonoBehaviour
     {
         if(other.gameObject.tag == "Player")
         {
-            //Destroy(this.gameObject);
+            Destroy(this.gameObject);
             GameManager.KeyScore++;
             GameManager.KeyCounterText.text = GameManager.KeyScore.ToString();
+
+            if (GameManager.KeyScore >= 3)
+            {
+                SceneManager.LoadScene("Win");
+            }
         }
     }
 

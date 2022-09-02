@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ManagerVidas : MonoBehaviour
 {
@@ -38,7 +39,13 @@ public class ManagerVidas : MonoBehaviour
         if(vidasPigs_Actual.livesThisPig <= 0)
         {
             TodosLosPigs.Remove(vidasPigs_Actual);
+            if (TodosLosPigs.Count == 0)
+            {
+                SceneManager.LoadScene("GameOver");
+            }
+
             Destroy(vidasPigs_Actual.gameObject);
+
             vidasPigs_Actual = TodosLosPigs[0];
             managerRotacion.ChangePosOfPigs(0);
         }
